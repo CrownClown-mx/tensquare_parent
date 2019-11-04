@@ -6,12 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @Author: Feng.Wang
- * @Company: Zelin.ShenZhen
- * @Description:
- * @Date: Create in 2019/5/21 11:10
- */
+
 @Entity
 @Table(name = "tb_label")   //指定表名
 @Data
