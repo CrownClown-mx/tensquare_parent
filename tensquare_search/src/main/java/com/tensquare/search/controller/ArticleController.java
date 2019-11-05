@@ -8,9 +8,7 @@ import entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created by WF on 2019-11-05 15:11
- */
+
 @RestController
 @RequestMapping("article")
 public class ArticleController {

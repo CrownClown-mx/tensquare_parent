@@ -9,9 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import util.IdWorker;
 
-/**
- * Created by WF on 2019-11-05 15:13
- */
+
 @Service
 public class ArticleService {
     @Autowired
