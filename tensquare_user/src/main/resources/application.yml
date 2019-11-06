@@ -1,0 +1,21 @@
+server:
+  port: 9009
+spring:
+  rabbitmq:
+    host: 192.168.25.130
+  application:
+    name: tensquare-user
+#数据源配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.25.130:3306/tensquare_user
+    username: root
+    password: 123
+#jpa配置
+  jpa:
+    show-sql: true
+    database: mysql
+
+#redis配置
+  redis:
+    host: 192.168.25.130

@@ -18,6 +18,10 @@
         <module>mongodbDemo</module>
         <module>tensquare_spit</module>
         <module>tensquare_search</module>
+        <module>rabbitmq_demo</module>
+        <module>rabbitmq_client</module>
+        <module>tensquare_user</module>
+        <module>tensquare_user</module>
     </modules>
 
     <parent>
@@ -39,11 +43,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -69,6 +76,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
     </repositories>
     <pluginRepositories>
         <pluginRepository>
