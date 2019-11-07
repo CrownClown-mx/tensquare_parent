@@ -5,7 +5,9 @@ import com.tensquare.user.pojo.User;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 import util.IdWorker;
 
 import java.util.Date;
@@ -27,6 +29,9 @@ public class UserService {
     private UserDao userDao;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
     //1.添加用户
     public void add(User user, String code) {
         //1.1)从redis中得到验证码
@@ -68,5 +73,28 @@ public class UserService {
         map.put("mobile",mobile);
         //2.5.2)发送消息
         rabbitTemplate.convertAndSend("sms",map);
+    }
+    //3.添加用户
+    public void add(User user){
+        //生成用户id
+        user.setId(idWorker.nextId()+"");
+        //加密用户
+        user.setPassword(encoder.encode(user.getPassword()));
+        //保存用户
+        userDao.save(user);
+    }
+    //4.用户登入
+    public User login(User user) {
+        //根据手机号查询当前用户登入
+        User u = userDao.findByMobile(user.getMobile());
+        //进行密码的比较
+        if (u !=null && encoder.matches(user.getPassword(),u.getPassword())){
+            return u;
+        }
+        return null;
+    }
+    //5.删除用户
+    public void deleteById(String userId) {
+        userDao.deleteById(userId);
     }
 }
